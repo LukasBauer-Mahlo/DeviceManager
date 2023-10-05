@@ -5,6 +5,7 @@ import de.bs1.landshut.device.database.MySQLDatabaseDriver;
 import de.bs1.landshut.device.services.ServiceRegistry;
 import de.bs1.landshut.device.util.javalin.DefaultAccessManager;
 import de.bs1.landshut.device.util.GsonJsonMapper;
+import de.bs1.landshut.device.web.account.ListAccountsRoute;
 import de.bs1.landshut.device.web.auth.AuthenticationRoutes;
 import de.bs1.landshut.device.web.brand.ListBrandsRoute;
 import de.bs1.landshut.device.web.category.ListCategoriesRoute;
@@ -40,6 +41,7 @@ public class DeviceManager {
     new ListDevicesRoute(javalin);
     new ListBrandsRoute(javalin);
     new ListCategoriesRoute(javalin);
+    new ListAccountsRoute(javalin);
 
     /*
     Category category = this.serviceRegistry.getCategoryService().createCategory("Keyboards");
