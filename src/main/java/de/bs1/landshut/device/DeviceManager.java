@@ -5,11 +5,12 @@ import de.bs1.landshut.device.database.MySQLDatabaseDriver;
 import de.bs1.landshut.device.services.ServiceRegistry;
 import de.bs1.landshut.device.util.javalin.DefaultAccessManager;
 import de.bs1.landshut.device.util.GsonJsonMapper;
-import de.bs1.landshut.device.web.account.ListAccountsRoute;
+import de.bs1.landshut.device.web.administration.AccountRoute;
 import de.bs1.landshut.device.web.auth.AuthenticationRoutes;
-import de.bs1.landshut.device.web.brand.ListBrandsRoute;
-import de.bs1.landshut.device.web.category.ListCategoriesRoute;
-import de.bs1.landshut.device.web.devices.ListDevicesRoute;
+import de.bs1.landshut.device.web.brand.BrandRoutes;
+import de.bs1.landshut.device.web.category.CategoryRoutes;
+import de.bs1.landshut.device.web.devices.DevicesRoutes;
+import de.bs1.landshut.device.web.supplier.SupplierRoutes;
 import io.javalin.Javalin;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import org.jetbrains.annotations.NotNull;
@@ -38,25 +39,12 @@ public class DeviceManager {
     //register web handlers
 
     new AuthenticationRoutes(javalin);
-    new ListDevicesRoute(javalin);
-    new ListBrandsRoute(javalin);
-    new ListCategoriesRoute(javalin);
-    new ListAccountsRoute(javalin);
+    new DevicesRoutes(javalin);
+    new BrandRoutes(javalin);
+    new CategoryRoutes(javalin);
+    new SupplierRoutes(javalin);
+    new AccountRoute(javalin);
 
-    /*
-    Category category = this.serviceRegistry.getCategoryService().createCategory("Keyboards");
-    Brand corsair = this.serviceRegistry.getBrandService().createBrand("Corsair");
-    Brand logitech = this.serviceRegistry.getBrandService().createBrand("Logitech");
-
-    Location location = this.serviceRegistry.getLocationService().createLocation("93333", "Neustadt", "Schubertstraße", "42");
-    SupplierContact contact = this.serviceRegistry.getSupplierService().createContact("Lukas", "Bauer", "lukas.bauer@mahlo.com");
-
-    Supplier supplier = this.serviceRegistry.getSupplierService().createSupplier("Alternate", location, contact);
-
-    this.serviceRegistry.getDeviceService().createDevice("Corsair K50", category.getId(), corsair.getId(), 10, supplier.getId());
-    this.serviceRegistry.getDeviceService().createDevice("G590", category.getId(), logitech.getId(), 10, supplier.getId());
-
-     */
   }
 
   @NotNull
