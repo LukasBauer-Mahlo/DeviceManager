@@ -19,6 +19,7 @@ public class AccountRoute {
         accountObject.addProperty("userName", account.getUserName());
         accountObject.addProperty("firstName", account.getFirstName());
         accountObject.addProperty("lastName", account.getLastName());
+        accountObject.addProperty("administrator", account.isAdministrator());
         jsonArray.add(accountObject);
       }
 
