@@ -11,7 +11,7 @@ public class BrandRoutes {
   public BrandRoutes(Javalin javalin) {
     javalin.get("/brands", context -> {
       context.json(DeviceManager.getInstance().getServices().getBrandService().getBrands());
-    });
+    }, AuthenticationLevel.USER);
 
     javalin.post("/brands/create", context -> {
       String name = context.header("name");

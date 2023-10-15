@@ -40,7 +40,7 @@ public class AccountRoute {
 
       Account account = DeviceManager.getInstance().getServices().getAccountService().createAccount(userName, firstName, lastName, password, Boolean.parseBoolean(adminBooleanAsString));
       context.json(account);
-    });
+    }, AuthenticationLevel.ADMIN);
   }
 
 }

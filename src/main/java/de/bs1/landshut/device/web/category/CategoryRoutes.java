@@ -11,7 +11,7 @@ public class CategoryRoutes {
   public CategoryRoutes(Javalin javalin) {
     javalin.get("/categories", context -> {
       context.json(DeviceManager.getInstance().getServices().getCategoryService().getCategories());
-    });
+    }, AuthenticationLevel.USER);
 
     javalin.post("/categories/create", context -> {
       String name = context.header("name");

@@ -11,7 +11,7 @@ public class DevicesRoutes {
   public DevicesRoutes(Javalin javalin) {
     javalin.get("/devices", context -> {
       context.json(DeviceManager.getInstance().getServices().getDeviceService().getDevicesWithInfo());
-    });
+    }, AuthenticationLevel.USER);
 
     javalin.post("/devices/create", context -> {
       String name = context.header("deviceName");
