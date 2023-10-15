@@ -32,19 +32,21 @@ public class DefaultAccessManager implements AccessManager {
 
     String token = context.header("token");
     if (token == null) {
+      context.result("Unable to find provided authorization token.");
       context.status(HttpStatus.UNAUTHORIZED);
       return;
     }
 
     Integer userId = this.tokenService.getUserIdByToken(token).orElse(null);
     if (userId == null) {
+      context.result("The entered token is invalid. Token entered: " + token);
       context.status(HttpStatus.UNAUTHORIZED);
       return;
     }
 
     Account account = this.accountService.getAccount(userId).orElse(null);
     if (account == null) {
-      context.result("The entered token is invalid.");
+      context.result("Unable to find account with id " + userId+ " mapped to entered token " + token);
       context.status(HttpStatus.FORBIDDEN);
       return;
     }
@@ -56,6 +58,7 @@ public class DefaultAccessManager implements AccessManager {
     }
 
     if (set.contains(AuthenticationLevel.ADMIN) && !account.isAdministrator()) {
+      context.result("This route is only accessible with administration permissions.");
       context.status(HttpStatus.FORBIDDEN);
       return;
     }
