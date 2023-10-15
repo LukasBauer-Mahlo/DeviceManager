@@ -43,7 +43,14 @@ public class DefaultAccessManager implements AccessManager {
     }
 
     Account account = this.accountService.getAccount(userId).orElse(null);
-    if (account == null || account.isDisabled()) {
+    if (account == null) {
+      context.result("The entered token is invalid.");
+      context.status(HttpStatus.FORBIDDEN);
+      return;
+    }
+
+    if (account.isDisabled()) {
+      context.result("Your account is disabled by the account administrator.");
       context.status(HttpStatus.FORBIDDEN);
       return;
     }
