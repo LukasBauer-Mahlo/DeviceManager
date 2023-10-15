@@ -33,7 +33,7 @@ public class AccountRoute {
       String password = context.header("password");
       String adminBooleanAsString = context.header("admin");
 
-      if (userName == null || firstName == null || lastName == null || password == null || adminBooleanAsString == null) {
+      if (userName == null || firstName == null || lastName == null || password == null || adminBooleanAsString == null || userName.trim().isEmpty() || firstName.trim().isEmpty() || lastName.trim().isEmpty() || password.trim().isEmpty()) {
         context.status(HttpStatus.BAD_REQUEST);
         return;
       }
