@@ -20,8 +20,10 @@ public class AuthenticationRoutes {
         return;
       }
 
+      DeviceManager.getInstance().getLogger().log("Trying to login user " + userName);
       DeviceManager.getInstance().getServices().getAccountService().getAccount(userName).ifPresentOrElse(account -> {
         if (!BCrypt.checkpw(password, account.getPassword())) {
+          DeviceManager.getInstance().getLogger().log("Login cancelled for user " + userName + " due to invalid password.");
           context.status(HttpStatus.FORBIDDEN);
           return;
         }

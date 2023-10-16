@@ -3,6 +3,7 @@ package de.bs1.landshut.device;
 import de.bs1.landshut.device.database.DatabaseDriver;
 import de.bs1.landshut.device.database.MySQLDatabaseDriver;
 import de.bs1.landshut.device.services.ServiceRegistry;
+import de.bs1.landshut.device.util.Logger;
 import de.bs1.landshut.device.util.javalin.DefaultAccessManager;
 import de.bs1.landshut.device.util.GsonJsonMapper;
 import de.bs1.landshut.device.web.administration.AccountRoute;
@@ -19,6 +20,7 @@ public class DeviceManager {
 
   private static final DeviceManager DEVICE_MANAGER = new DeviceManager();
 
+  private final Logger logger = new Logger();
   private DatabaseDriver databaseDriver;
   private ServiceRegistry serviceRegistry;
 
@@ -50,6 +52,11 @@ public class DeviceManager {
   @NotNull
   public static DeviceManager getInstance() {
     return DEVICE_MANAGER;
+  }
+
+  @NotNull
+  public Logger getLogger() {
+    return this.logger;
   }
 
   @NotNull

@@ -25,6 +25,8 @@ public class DefaultAccessManager implements AccessManager {
 
   @Override
   public void manage(@NotNull Handler handler, @NotNull Context context, @NotNull Set<? extends RouteRole> set) throws Exception {
+    DeviceManager.getInstance().getLogger().log("Loading path: " + context.path());
+
     if (set.isEmpty()) {
       handler.handle(context);
       return;
