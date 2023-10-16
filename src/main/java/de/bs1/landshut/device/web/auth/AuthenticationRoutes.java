@@ -38,6 +38,11 @@ public class AuthenticationRoutes {
 
       DeviceManager.getInstance().getServices().getTokenService().invalidateAllTokens(account.getId());
     }, AuthenticationLevel.USER);
+
+    javalin.get("/auth/check", context -> {
+      // checked due to access manager
+      context.status(HttpStatus.OK);
+    }, AuthenticationLevel.USER);
   }
 
 }
