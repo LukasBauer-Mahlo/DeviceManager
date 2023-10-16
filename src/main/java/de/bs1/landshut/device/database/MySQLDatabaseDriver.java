@@ -104,7 +104,6 @@ public class MySQLDatabaseDriver implements DatabaseDriver {
       @NotNull String sql,
       @Nullable ThrowableConsumer<PreparedStatement, SQLException> modifier,
       @NotNull ThrowableFunction<ResultSet, T, SQLException> resultMapper) {
-    long begin = System.currentTimeMillis();
 
     try (Connection connection = this.getConnection();
         PreparedStatement statement = connection.prepareStatement(
